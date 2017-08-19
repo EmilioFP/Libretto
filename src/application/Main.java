@@ -2,6 +2,7 @@ package application;
 	
 import javafx.application.Application;
 import javafx.stage.Stage;
+import model.Model;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.fxml.FXMLLoader;
@@ -11,8 +12,14 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-			BorderPane root = (BorderPane)FXMLLoader.load(getClass().getResource("Libretto.fxml"));
-			Scene scene = new Scene(root,400,400);
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("Libretto.fxml"));
+			BorderPane root = (BorderPane)loader.load();
+			
+			LibrettoController controller = loader.getController();
+			Model model = new Model();
+			controller.setModel(model);
+			
+			Scene scene = new Scene(root);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			primaryStage.setScene(scene);
 			primaryStage.show();
