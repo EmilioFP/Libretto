@@ -1,17 +1,9 @@
 package model;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import libretto.db.EsameDAO;
 
 public class Model {
-	
-	private List<Esame> esami;
-	
-	public Model() {
-		this.esami = new ArrayList<Esame>();
-	}
+		
     /**
      * Aggiunge un nuovo esame all'elenco degli esami presenti
      * verificando che non ci sia già
