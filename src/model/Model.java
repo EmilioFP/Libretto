@@ -3,6 +3,8 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
+import libretto.db.EsameDAO;
+
 public class Model {
 	
 	private List<Esame> esami;
@@ -17,12 +19,10 @@ public class Model {
      * @return true se l'ha inserto, false se esisteva già e quindi non inserito
     */
 	public boolean addEsame(Esame e) {
-		if(!esami.contains(e)) {
-			esami.add(e);
-			return true;
-		} else {
-			return false;
-		}
+		
+		EsameDAO dao = new EsameDAO();
+					
+		return dao.create(e);
 	}
 	/**
 	 * Ricerca se esite un esame con il codice specificato.
@@ -31,12 +31,12 @@ public class Model {
 	 * @return esame trovato, oppure null se non trovato
 	 */
 	public Esame trovaEsame(String codice) {
-		int pos = esami.indexOf(new Esame(codice, null,null));
-		if (pos==-1) {
-			return null;
-		} else {
-			return esami.get(pos);
-		}
+		
+		EsameDAO dao = new EsameDAO();
+		
+		Esame e = dao.find(codice);
+		
+		return e;
 	}
 
 }
